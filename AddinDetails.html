@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+      /* Style the body, set up for darkmode/light mode read from browser */
+body {  
+  --txtColor : black;
+  --Bg_color : whitesmoke;
+  --BordersX : gray;
+
+  color            : var(--txtColor);
+  background-color : var(--Bg_color);
+  }
+@media (prefers-color-scheme: dark) {
+  body {
+    --txtColor : whitesmoke;
+    --Bg_color : #1d1e22;
+    --BordersX : gray;
+    }
+  }
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: none;
+  color: var(--txtColor);
+  background-color: var(--Bg_color);
+}
+
+/* Style the buttons inside the tab */
+      .tab button {
+          color: inherit;
+          background-color: inherit;
+          float: left;
+          border: 1px solid var(--BordersX);
+          outline: none;
+          cursor: pointer;
+          width: 33.333%;
+          padding: 14px 16px;
+          transition: 0.3s;
+          font-size: 17px;
+          font-weight: bold;
+      }
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: var(--Bg_color);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: var(--Bg_color);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 16px;
+  border: 1px solid var(--BordersX);
+  border-top: none;
+}
+
+      .local-listings {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(min-content, 200px));
+      }
+
+      /* Style the "un"sorted list [allows columns and rows] */
+      ul {
+          list-style-type: none;
+          counter-reset: section;
+          -moz-column-count: 3;
+          -moz-column-gap: 20px;
+          -webkit-column-count: 3;
+          -webkit-column-gap: 20px;
+          column-count: 3;
+          column-gap: 20px;
+      }
+      /* Style the list */
+          ul li {
+              padding-left: 30px;
+              position: relative;
+          }
+      /* Style the list item prefix [if any] */
+ul li:before {
+    margin: 0 0 0 -34px;
+    text-align: right;
+    width: 2em;
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+}
+
+      /* unvisited link */
+      a:link {
+          color: var(--txtColor);
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      /* visited link */
+      a:visited {
+          color: var(--txtColor);
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      /* mouse over link */
+      a:hover {
+          color: var(--txtColor);
+          text-decoration: none;
+          font-weight: bold;
+      }
+
+      /* selected link */
+      a:active {
+          color: var(--txtColor);
+          text-decoration: none;
+          font-weight: bold;
+      } 
+/*
+    For HTML below:
+      &ensp; <!-- Two spaces gap -->
+      &emsp; <!-- Four spaces gap -->
+*/
+</style>
+</head>
+<body>
+    <span id="upper"></span>
+    <h2>Environments</h2>
+    <p>Click on an environment inside the tabbed menu to see available utilities:</p>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openEnvironmentType(event, 'Part Evironment')">Part Evironment</button>
+        <button class="tablinks" onclick="openEnvironmentType(event, 'Assembly Evironment')">Assembly Evironment</button>
+        <button class="tablinks" onclick="openEnvironmentType(event, 'Drawing Evironment')">Drawing Evironment</button>
+    </div>
+
+    <div id="Part Evironment" class="tabcontent">
+        <h3>Part Evironment Utilities</h3>
+
+        <ul class="local-listings inline-block text-center w-full mb-6">
+            <li>
+                <a href="#p-item1">
+                    <span class="title">RouterCIM Helper</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item2">
+                    <span class="title">Part Descriptions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item3">
+                    <span class="title">Dimension Info</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item4">
+                    <span class="title">Cabinet Openings</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item5">
+                    <span class="title">HAU Exporter</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item6">
+                    <span class="title">Derived Part Match</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item7">
+                    <span class="title">Rename Bodies</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item8">
+                    <span class="title">Round Dimensions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item9">
+                    <span class="title">Normalize Planes</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item10">
+                    <span class="title">Play Turntable</span>
+                </a>
+            </li>
+            <li>
+                <a href="#p-item11">
+                    <span class="title">Part Label Geo</span>
+                </a>
+            </li>
+        </ul>
+
+        <p></p>
+        <h4 id="p-item1">RouterCIM Helper</h4>
+        <p>&emsp;- Tool Tip: "Helps to process and check RouterCIM features for compatability. [In Drawing is used to automate edgebanding notes.]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item2">Part Descriptions</h4>
+        <p>&emsp;- Tool Tip: "Create or Retrieve Part Descriptions. [In Parts, hold control to create bounding box solids | In Parts, hold Alt to only edit the part description iProperty]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item3">Dimension Info</h4>
+        <p>&emsp;- Tool Tip: "Displays the geometry a dimension is associated with."</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item4">Cabinet Openings</h4>
+        <p>&emsp;- Tool Tip: "Creates construction lines defining cabinet openings"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item5">HAU Exporter</h4>
+        <p>&emsp;- Tool Tip: "Processes Face Frame parts to prep for the shop"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item6">Derived Part Match</h4>
+        <p>&emsp;- Tool Tip: "Copies Solid and Surface names from Derived part parents"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item7">Rename Bodies</h4>
+        <p>&emsp;- Tool Tip: "Rename All or Select group of Solids"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item8">Round Dimensions</h4>
+        <p>&emsp;- Tool Tip: "Creates Rounded User Parameter for any Parameter with prefix: "ROUGH_" "</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item9">Normalize Planes</h4>
+        <p>&emsp;- Tool Tip: "Align All parallel Workplane Axes to the orgin planes"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item10">Play Turntable</h4>
+        <p>&emsp;- Tool Tip: "Spins Camera around an axis like a turntable"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="p-item11">Part Label Geo</h4>
+        <p>&emsp;- Tool Tip: "Creates Part Label Geometry [Hold shift to add label geometry to all parts]"</p>
+        <p>&emsp;- More Details to come</p>
+    </div>
+
+    <div id="Assembly Evironment" class="tabcontent">
+        <h3>Assembly Evironment Utilities</h3>
+
+        <ul class="local-listings inline-block text-center w-full mb-6">
+            <li>
+                <a href="#a-item1">
+                    <span class="title">RouterCIM Helper</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item2">
+                    <span class="title">Part Descriptions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item3">
+                    <span class="title">Dimension Info</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item4">
+                    <span class="title">Auto Constrain</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item5">
+                    <span class="title">Multi-Parameter</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item6">
+                    <span class="title">Part Labels</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item7">
+                    <span class="title">Part Label Geo</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item8">
+                    <span class="title">Add Cabinets</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item9">
+                    <span class="title">Add Plinths</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item10">
+                    <span class="title">Add Struts</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item11">
+                    <span class="title">Replace With Derived</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item12">
+                    <span class="title">Link ModelStates</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item13">
+                    <span class="title">Play Turntable</span>
+                </a>
+            </li>
+            <li>
+                <a href="#a-item14">
+                    <span class="title">Validate iLogic</span>
+                </a>
+            </li>
+        </ul>
+
+        <p></p>
+        <h4 id="a-item1">RouterCIM Helper</h4>
+        <p>&emsp;- Tool Tip: "Helps to process and check RouterCIM features for compatability. [In Drawing is used to automate edgebanding notes.]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item2">Part Descriptions</h4>
+        <p>&emsp;- Tool Tip: "Create or Retrieve Part Descriptions. [In Parts, hold control to create bounding box solids | In Parts, hold Alt to only edit the part description iProperty]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item3">Dimension Info</h4>
+        <p>&emsp;- Tool Tip: "Displays the geometry a dimension is associated with."</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item4">Auto Constrain</h4>
+        <p>&emsp;- Tool Tip: "Constrain Origin Planes between components or main assembly"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item5">Multi-Parameter</h4>
+        <p>&emsp;- Tool Tip: "Select and set a matching parameter in multiple components"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item6">Part Labels</h4>
+        <p>&emsp;- Tool Tip: "Sets standard part label iProperties for components. [This will also run the ""Part Label Geo"" command after it finishes]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item7">Part Label Geo</h4>
+        <p>&emsp;- Tool Tip: "Creates Part Label Geometry [Hold shift to add label geometry to all parts]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item8">Add Cabinets</h4>
+        <p>&emsp;- Tool Tip: "Adds Cabinets to assembly and constrains to Face Frame Surfaces"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item9">Add Plinths</h4>
+        <p>&emsp;- Tool Tip: "Adds Plinths to assembly and constrains to Cabinet Surfaces"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item10">Add Struts</h4>
+        <p>&emsp;- Tool Tip: "Adds Struts to assembly and constrains to Cabinet Surfaces"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item11">Replace With Derived</h4>
+        <p>&emsp;- Tool Tip: "Creates a derived part from a selected component and deletes original"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item12">Link ModelStates</h4>
+        <p>&emsp;- Tool Tip: "Links component ModelStates to main assembly ModelStates"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item13">Play Turntable</h4>
+        <p>&emsp;- Tool Tip: "Spins Camera around an axis like a turntable"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="a-item14">Validate iLogic</h4>
+        <p>&emsp;- Tool Tip: "Parses all active iLogic Rules in current assembly to find any component that is missing logic."</p>
+        <p>&emsp;- More Details to come</p>
+
+    </div>
+
+    <div id="Drawing Evironment" class="tabcontent">
+        <h3>Drawing Evironment Utilities</h3>
+
+        <ul class="local-listings inline-block text-center w-full mb-6">
+            <li>
+                <a href="#d-item1">
+                    <span class="title">RouterCIM Helper</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item2">
+                    <span class="title">Part Descriptions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item3">
+                    <span class="title">Automated Views</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item4">
+                    <span class="title">Align Views</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item5">
+                    <span class="title">Add Part Labels</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item6">
+                    <span class="title">Link Section Views</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item7">
+                    <span class="title">Update Model Reference</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item8">
+                    <span class="title">Issue Drawing</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item9">
+                    <span class="title">Update Part Labels</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item10">
+                    <span class="title">Toggle Sheet Prints</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item11">
+                    <span class="title">Match Info</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item12">
+                    <span class="title">Create Symbol</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item13">
+                    <span class="title">HAU Cutlist Format</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item14">
+                    <span class="title">Inspection Dimensions</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item15">
+                    <span class="title">Create Solid Leaders</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item16">
+                    <span class="title">Update Solid Leaders</span>
+                </a>
+            </li>
+            <li>
+                <a href="#d-item17">
+                    <span class="title">Update Static Symbols</span>
+                </a>
+            </li>
+        </ul>
+
+        <p></p>
+        <h4 id="d-item1">RouterCIM Helper</h4>
+        <p>&emsp;- Tool Tip: "Helps to process and check RouterCIM features for compatability. [In Drawing is used to automate edgebanding notes.]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item2">Part Descriptions</h4>
+        <p>&emsp;- Tool Tip: "Create or Retrieve Part Descriptions. [In Parts, hold control to create bounding box solids | In Parts, hold Alt to only edit the part description iProperty]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item3">Automated Views</h4>
+        <p>&emsp;- Tool Tip: "Creates views of part files by several options [All_Cabinet_ISO]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item4">Align Views</h4>
+        <p>&emsp;- Tool Tip: "Align two views by selecting a line in each"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item5">Add Part Labels</h4>
+        <p>&emsp;- Tool Tip: "Adds Part Labels to view [Part Label Geometry must exist first]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item6">Link Section Views</h4>
+        <p>&emsp;- Tool Tip: "Creates links and updates section callouts for the sheet that the view exists on"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item7">Update Model Reference</h4>
+        <p>&emsp;- Tool Tip: "Updates all referenced documents [run with shift held to save after updates | run with Crtl held to rebuild all after update, before save]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item8">Issue Drawing</h4>
+        <p>&emsp;- Tool Tip: "Performs updates and exports drawing to work folder"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item9">Update Part Labels</h4>
+        <p>&emsp;- Tool Tip: "Updates Part Labels in a drawing [linetype will change to dashed for unattached part labels]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item10">Toggle Sheet Prints</h4>
+        <p>&emsp;- Tool Tip: "Toggles selected sheets to print by default [run with shift held for toggling to not print]"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item11">Match Info</h4>
+        <p>&emsp;- Tool Tip: "Copies informations from one symbol to another"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item12">Create Symbol</h4>
+        <p>&emsp;- Tool Tip: "Select a Sketch to create a Sketch Symbol"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item13">HAU Cutlist Format</h4>
+        <p>&emsp;- Tool Tip: "Formats Cutlists for Beaded Face Frames"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item14">Inspection Dimensions</h4>
+        <p>&emsp;- Tool Tip: "Sets Inspection Dimension for VIF Status"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item15">Create Solid Leaders</h4>
+        <p>&emsp;- Tool Tip: "Adds baloon leaders to a drawing view for each solidbody of a single part"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item16">Update Solid Leaders</h4>
+        <p>&emsp;- Tool Tip: "Updates existing ballons with the current solidbody name"</p>
+        <p>&emsp;- More Details to come</p>
+
+        <p></p>
+        <h4 id="d-item17">Update Static Symbols</h4>
+        <p>&emsp;- Tool Tip: "Updates the Static TitleBlocks and Static View Labels on each sheet"</p>
+        <p>&emsp;- More Details to come</p>
+
+    </div>
+
+    <a href="#upper">Back to top</a>
+
+    <div class="BottomWhiteSpace" style="position: absolute; width: 1px; height: 90%;"></div>
+
+    <script>
+        let darkMode = !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        console.log('dark mode ? :', darkMode);
+    </script>
+    <script>
+        function openEnvironmentType(evt, evironmentName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(evironmentName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
+</html> 
